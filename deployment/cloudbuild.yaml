@@ -1,0 +1,9 @@
+substitutions:
+  _IMAGE_NAME: open-cloud-dfdl
+  _TAG: v1
+
+steps:
+- name: gcr.io/cloud-builders/mvn:3.5.0-jdk-8
+  id: build
+  args: ['clean', 'install', 'jib:build', '-Dimage=gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG}',
+         '-Dmaven.test.skip=true']

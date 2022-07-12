@@ -1,0 +1,20 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: open-cloud-dfdl-service
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    metadata:
+      #      Temporary - Version name needs to be incremented before executing the
+      #      service, e.g dfdl-example-service-v4
+      name: open-cloud-dfdl-service-v3
+      annotations:
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containers:
+      - image: gcr.io/ctr-usamaijaz/open-cloud-dfdl:v1
+        ports:
+        - name: http1
+          containerPort: 8081
